@@ -826,6 +826,22 @@ services:
 `,
   officialsite: 'https://github.com/xdFNLeaks/managebot'
 },
+{
+  name: 'Dozzle',
+  description: 'Realtime log viewer for docker containers.',
+  command: '$ docker run --name dozzle -d --volume=/var/run/docker.sock:/var/run/docker.sock:ro -p 8888:8080 amir20/dozzle:latest',
+  compose: `version: "3"
+services:
+  dozzle:
+    container_name: dozzle
+    image: amir20/dozzle:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - 8888:8080
+`,
+  officialsite: 'https://github.com/amir20/dozzle'
+},
 
   ];
 
