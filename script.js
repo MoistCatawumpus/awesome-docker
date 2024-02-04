@@ -804,6 +804,23 @@ graylog:
 `,
   officialsite: 'https://www.graylog.org/'
 },
+{
+  name: 'Managebot',
+  description: 'Docker container management from Discord',
+  command: 'docker run -d --name managebot --privileged --restart unless-stopped -v /your/path/to/managebot/config:/usr/src/app/config -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/xdfnleaks/managebot:latest',
+  compose: `version: "3.3"
+services:
+  managebot:
+    container_name: managebot
+    privileged: true
+    restart: unless-stopped
+    image: "ghcr.io/xdfnleaks/managebot:latest"
+    volumes:
+      - /your/path/to/managebot/config:/usr/src/app/config
+      - /var/run/docker.sock:/var/run/docker.sock
+`,
+  officialsite: 'https://github.com/xdFNLeaks/managebot'
+},
 
   ];
 
