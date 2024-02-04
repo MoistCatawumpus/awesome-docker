@@ -15,7 +15,8 @@ services:
       - "9000:9000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-`
+`,
+            officialsite: 'https://www.portainer.io/'
         },
         {
             name: 'Jellyfin',
@@ -32,7 +33,8 @@ services:
     volumes:
       - /path/to/config:/config
       - /path/to/media:/media
-`
+`,
+            officialsite: 'https://jellyfin.org/'
         },
         {
             name: 'Plex',
@@ -49,7 +51,8 @@ services:
       - /path/to/config:/config
       - /path/to/transcode:/transcode
       - /path/to/media:/data
-`
+`,
+            officialsite: 'https://www.plex.tv/'
         },
         {
             name: 'Radarr',
@@ -70,7 +73,8 @@ services:
       - /path/to/config:/config
       - /path/to/movies:/movies
       - /path/to/download:/downloads
-`
+`,
+            officialsite: 'https://radarr.video/'
         },
         {
             name: 'Sonarr',
@@ -91,7 +95,8 @@ services:
       - /path/to/config:/config
       - /path/to/tv:/tv
       - /path/to/download:/downloads
-`
+`,
+            officialsite: 'https://sonarr.tv/'
         },
         {
             name: 'Lidarr',
@@ -112,7 +117,8 @@ services:
       - /path/to/config:/config
       - /path/to/music:/music
       - /path/to/download:/downloads
-`
+`,
+            officialsite: 'https://lidarr.audio/'
         },
         {
             name: 'Requestrr',
@@ -128,7 +134,8 @@ services:
     volumes:
       - /path/to/config:/root/config
     restart: unless-stopped
-`
+`,
+            officialsite: 'https://github.com/thomst08/requestrr'
         },
         {
             name: 'Overseerr',
@@ -144,7 +151,8 @@ services:
     volumes:
       - /path/to/config:/config
       - /path/to/downloads:/downloads
-`
+`,
+            officialsite: 'https://overseerr.dev/'
         },
         {
             name: 'Jellyseerr',
@@ -162,7 +170,8 @@ services:
     volumes:
       - /path/to/config:/config
       - /path/to/downloads:/downloads
-`
+`,
+            officialsite: 'https://github.com/Fallenbagel/jellyseerr'
         },
         {
             name: 'Watchtower',
@@ -175,7 +184,8 @@ services:
     container_name: watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-`
+`,
+            officialsite: 'https://github.com/containrrr/watchtower'
         },
         {
             name: 'Autoheal',
@@ -188,7 +198,8 @@ services:
     container_name: autoheal
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-`
+`,
+            officialsite: 'https://github.com/willfarrell/docker-autoheal'
         },
         {
             name: 'Readarr',
@@ -209,7 +220,8 @@ services:
       - /path/to/config:/config
       - /path/to/books:/books
       - /path/to/download:/downloads
-`
+`,
+            officialsite: 'https://readarr.com/'
         },
     ];
 
@@ -221,6 +233,7 @@ services:
             <p><strong>Command:</strong> <code>${service.command}</code></p>
             <p><strong>Docker Compose:</strong></p>
             <pre><code>${service.compose}</code></pre>
+            <p><strong><a href="${service.officialsite}" target="_blank">Official Site</a></strong></p>
             <hr>
         `;
         instructionsDiv.appendChild(serviceDiv);
