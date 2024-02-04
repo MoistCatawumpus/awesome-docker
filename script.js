@@ -117,17 +117,17 @@ services:
         {
             name: 'Requestrr',
             description: 'Chatbot used to simplify using services like Sonarr/Radarr/Ombi via the use of chat.',
-            command: 'docker run -d --name=requestrr -p 4545:4545 -v /path/to/config:/app/config -v /path/to/downloads:/app/downloads tidusjar/requestrr',
+            command: 'docker run -d --name=requestrr -p 4545:4545 -v /path/to/config:/app/config thomst08/requestrr',
             compose: `version: '3'
 services:
   requestrr:
-    image: tidusjar/requestrr
+    image: thomst08/requestrr
     container_name: requestrr
     ports:
       - "4545:4545"
     volumes:
-      - /path/to/config:/app/config
-      - /path/to/downloads:/app/downloads
+      - /path/to/config:/root/config
+    restart: unless-stopped
 `
         },
         {
