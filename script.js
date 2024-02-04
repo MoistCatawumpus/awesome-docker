@@ -238,4 +238,35 @@ services:
         `;
         instructionsDiv.appendChild(serviceDiv);
     });
+
+    const githubLogoLink = document.createElement('a');
+    githubLogoLink.href = 'https://github.com/MoistCatawumpus';
+    githubLogoLink.target = '_blank';
+
+    const githubLogo = document.createElement('img');
+    githubLogo.src = 'github.png';
+    githubLogo.alt = 'GitHub Logo';
+    githubLogo.width = '32';
+    githubLogo.height = '32';
+
+    githubLogoLink.appendChild(githubLogo);
+    instructionsDiv.appendChild(githubLogoLink);
+
+    const spaceElement = document.createElement('span');
+    spaceElement.innerHTML = '&nbsp;';
+
+    instructionsDiv.appendChild(spaceElement);
+
+    const redditLogoLink = document.createElement('a');
+    redditLogoLink.href = 'https://www.reddit.com/user/MoistCatawumpus/';
+    redditLogoLink.target = '_blank';
+
+    const redditLogo = document.createElement('img');
+    redditLogo.src = 'reddit.png';
+    redditLogo.alt = 'Reddit Logo';
+    redditLogo.width = '32';
+    redditLogo.height = '32';
+
+    redditLogoLink.appendChild(redditLogo);
+    instructionsDiv.appendChild(redditLogoLink);
 });
