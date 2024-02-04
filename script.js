@@ -382,6 +382,429 @@ services:
 `,
     officialsite: 'https://freshrss.org/'
 },
+{
+    name: 'Mattermost',
+    description: 'Open source, self-hosted Slack alternative.',
+    command: 'docker run -d --name=mattermost -p 8065:8065 mattermost/mattermost-team-edition',
+    compose: `version: '2'
+services:
+  mattermost:
+    image: mattermost/mattermost-team-edition
+    container_name: mattermost
+    ports:
+      - "8065:8065"
+`,
+    officialsite: 'https://mattermost.com/'
+},
+{
+    name: 'Minio',
+    description: 'High-performance object storage server.',
+    command: 'docker run -d --name=minio -p 9000:9000 -v /path/to/data:/data minio/minio server /data',
+    compose: `version: '2'
+services:
+  minio:
+    image: minio/minio
+    container_name: minio
+    ports:
+      - "9000:9000"
+    volumes:
+      - /path/to/data:/data
+`,
+    officialsite: 'https://min.io/'
+},
+{
+    name: 'Booktype',
+    description: 'Collaborative book writing platform.',
+    command: 'docker run -d --name=booktype -p 8004:8004 -v /path/to/booktype:/data/booktype serverest/booktype',
+    compose: `version: '2'
+services:
+  booktype:
+    image: serverest/booktype
+    container_name: booktype
+    ports:
+      - "8004:8004"
+    volumes:
+      - /path/to/booktype:/data/booktype
+`,
+    officialsite: 'https://www.sourcefabric.org/en/booktype/'
+},
+{
+    name: 'CodiMD',
+    description: 'Real-time collaborative markdown notes.',
+    command: 'docker run -d --name=codimd -p 3000:3000 -v /path/to/codimd:/data quay.io/codimd/server:latest',
+    compose: `version: '2'
+services:
+  codimd:
+    image: quay.io/codimd/server:latest
+    container_name: codimd
+    ports:
+      - "3000:3000"
+    volumes:
+      - /path/to/codimd:/data
+`,
+    officialsite: 'https://hackmd.io/c/codimd-documentation/%2F%2BbQMtecoTdW-LX1otHvRA'
+},
+{
+    name: 'Jitsi Meet',
+    description: 'Video conferencing with Jitsi.',
+    command: 'docker run -d --name=jitsi-meet -p 8443:443 -p 8000:80 -p 10000:10000 jitsi/jitsi-meet',
+    compose: `version: '2'
+services:
+  jitsi-meet:
+    image: jitsi/jitsi-meet
+    container_name: jitsi-meet
+    ports:
+      - "8443:443"
+      - "8000:80"
+      - "10000:10000"
+`,
+    officialsite: 'https://jitsi.org/jitsi-meet/'
+},
+{
+    name: 'Snipe-IT',
+    description: 'Open Source Asset Management System.',
+    command: 'docker run -d --name=snipe-it -p 8082:80 -v /path/to/snipe-it:/var/lib/snipeit snipe/snipe-it',
+    compose: `version: '2'
+services:
+  snipe-it:
+    image: snipe/snipe-it
+    container_name: snipe-it
+    ports:
+      - "8082:80"
+    volumes:
+      - /path/to/snipe-it:/var/lib/snipeit
+`,
+    officialsite: 'https://snipeitapp.com/'
+},
+{
+    name: 'Firefly III',
+    description: 'A personal finances manager.',
+    command: 'docker run -d --name=firefly-iii -p 8083:8080 -v /path/to/firefly-iii:/var/www/html grumpydictator/firefly-iii',
+    compose: `version: '2'
+services:
+  firefly-iii:
+    image: grumpydictator/firefly-iii
+    container_name: firefly-iii
+    ports:
+      - "8083:8080"
+    volumes:
+      - /path/to/firefly-iii:/var/www/html
+`,
+    officialsite: 'https://www.firefly-iii.org/'
+},
+{
+    name: 'ONLYOFFICE',
+    description: 'Online office suite with collaborative editing features.',
+    command: 'docker run -d --name=onlyoffice -p 8084:80 -v /path/to/onlyoffice:/var/www/onlyoffice/data onlyoffice/documentserver',
+    compose: `version: '2'
+services:
+  onlyoffice:
+    image: onlyoffice/documentserver
+    container_name: onlyoffice
+    ports:
+      - "8084:80"
+    volumes:
+      - /path/to/onlyoffice:/var/www/onlyoffice/data
+`,
+    officialsite: 'https://www.onlyoffice.com/'
+},
+{
+    name: 'Heimdall',
+    description: 'Application dashboard and launcher.',
+    command: 'docker run -d --name=heimdall -p 8085:80 -v /path/to/heimdall:/config linuxserver/heimdall',
+    compose: `version: '2'
+services:
+  heimdall:
+    image: linuxserver/heimdall
+    container_name: heimdall
+    ports:
+      - "8085:80"
+    volumes:
+      - /path/to/heimdall:/config
+`,
+    officialsite: 'https://heimdall.site/'
+},
+{
+    name: 'Organizr',
+    description: 'HTPC/Homelab Services Organizer.',
+    command: 'docker run -d --name=organizr -p 8086:80 -e PUID=1000 -e PGID=1000 -e TZ=your-timezone -v /path/to/config:/config linuxserver/organizr',
+    compose: `version: '2'
+services:
+  organizr:
+    image: linuxserver/organizr
+    container_name: organizr
+    ports:
+      - "8086:80"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=your-timezone
+    volumes:
+      - /path/to/config:/config
+`,
+    officialsite: 'https://organizr.app/'
+},
+{
+    name: 'Grafana',
+    description: 'Open platform for monitoring and observability.',
+    command: 'docker run -d --name=grafana -p 3001:3000 -e GF_SECURITY_ADMIN_PASSWORD=admin -v /path/to/grafana-data:/var/lib/grafana grafana/grafana',
+    compose: `version: '2'
+services:
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - /path/to/grafana-data:/var/lib/grafana
+`,
+    officialsite: 'https://grafana.com/'
+},
+{
+    name: 'Pi-hole',
+    description: 'Network-wide ad blocking.',
+    command: 'docker run -d --name=pihole -p 8087:80 -p 53:53/tcp -p 53:53/udp -e TZ=your-timezone -v /path/to/pihole:/etc/pihole -v /path/to/dnsmasq.d:/etc/dnsmasq.d --dns=127.0.0.1 --dns=1.1.1.1 pihole/pihole',
+    compose: `version: '3'
+services:
+  pihole:
+    image: pihole/pihole
+    container_name: pihole
+    ports:
+      - "8087:80"
+      - "53:53/tcp"
+      - "53:53/udp"
+    environment:
+      - TZ=your-timezone
+    volumes:
+      - /path/to/pihole:/etc/pihole
+      - /path/to/dnsmasq.d:/etc/dnsmasq.d
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+`,
+    officialsite: 'https://pi-hole.net/'
+},
+{
+    name: 'Home Assistant',
+    description: 'Open-source home automation platform.',
+    command: 'docker run -d --name=home-assistant -p 8123:8123 -v /path/to/home-assistant:/config homeassistant/home-assistant',
+    compose: `version: '2'
+services:
+  home-assistant:
+    image: homeassistant/home-assistant
+    container_name: home-assistant
+    ports:
+      - "8123:8123"
+    volumes:
+      - /path/to/home-assistant:/config
+`,
+    officialsite: 'https://www.home-assistant.io/'
+},
+{
+    name: 'Nginx',
+    description: 'High-performance web server.',
+    command: 'docker run -d --name=nginx -p 8088:80 -v /path/to/nginx:/usr/share/nginx/html nginx',
+    compose: `version: '3'
+services:
+  nginx:
+    image: nginx
+    container_name: nginx
+    ports:
+      - "8088:80"
+    volumes:
+      - /path/to/nginx:/usr/share/nginx/html
+`,
+    officialsite: 'https://www.nginx.com/'
+},
+{
+    name: 'Bitwarden',
+    description: 'Open-source password manager.',
+    command: 'docker run -d --name=bitwarden -p 8089:80 -v /path/to/bitwarden:/data bitwardenrs/server',
+    compose: `version: '2'
+services:
+  bitwarden:
+    image: bitwardenrs/server
+    container_name: bitwarden
+    ports:
+      - "8089:80"
+    volumes:
+      - /path/to/bitwarden:/data
+`,
+    officialsite: 'https://bitwarden.com/'
+},
+{
+    name: 'Jupyter Notebook',
+    description: 'Open-source web application for interactive computing.',
+    command: 'docker run -d --name=jupyter -p 8090:8888 -v /path/to/notebooks:/home/jovyan jupyter/base-notebook',
+    compose: `version: '2'
+services:
+  jupyter:
+    image: jupyter/base-notebook
+    container_name: jupyter
+    ports:
+      - "8090:8888"
+    volumes:
+      - /path/to/notebooks:/home/jovyan
+`,
+    officialsite: 'https://jupyter.org/'
+},
+{
+    name: 'Prometheus',
+    description: 'Monitoring and alerting toolkit.',
+    command: 'docker run -d --name=prometheus -p 9090:9090 -v /path/to/prometheus:/etc/prometheus prom/prometheus',
+    compose: `version: '2'
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - /path/to/prometheus:/etc/prometheus
+`,
+    officialsite: 'https://prometheus.io/'
+},
+{
+    name: 'Gitea',
+    description: 'A painless self-hosted Git service.',
+    command: 'docker run -d --name=gitea-2 -p 3001:3000 -v /path/to/gitea-2:/data gitea/gitea',
+    compose: `version: '2'
+services:
+  gitea-2:
+    image: gitea/gitea
+    container_name: gitea-2
+    ports:
+      - "3001:3000"
+    volumes:
+      - /path/to/gitea-2:/data
+`,
+    officialsite: 'https://gitea.io/'
+},
+{
+    name: 'Bitbucket Server',
+    description: 'Git repository management for enterprise teams.',
+    command: 'docker run -d --name=bitbucket -p 7990:7990 -p 7999:7999 -v /path/to/bitbucket:/var/atlassian/application-data/bitbucket atlassian/bitbucket-server',
+    compose: `version: '2'
+services:
+  bitbucket:
+    image: atlassian/bitbucket-server
+    container_name: bitbucket
+    ports:
+      - "7990:7990"
+      - "7999:7999"
+    volumes:
+      - /path/to/bitbucket:/var/atlassian/application-data/bitbucket
+`,
+    officialsite: 'https://www.atlassian.com/software/bitbucket'
+},
+{
+    name: 'Redash',
+    description: 'Open-source visualizations and dashboards.',
+    command: 'docker run -d --name=redash -p 8091:5000 -e REDASH_WEB_BASE_PATH=/ -v /path/to/redash:/app/redash redash/redash',
+    compose: `version: '2'
+services:
+  redash:
+    image: redash/redash
+    container_name: redash
+    ports:
+      - "8091:5000"
+    environment:
+      - REDASH_WEB_BASE_PATH=/
+    volumes:
+      - /path/to/redash:/app/redash
+`,
+    officialsite: 'https://redash.io/'
+},
+{
+    name: 'Minecraft Server',
+    description: 'Vanilla Minecraft server.',
+    command: 'docker run -d --name=minecraft -p 25565:25565 -v /path/to/minecraft:/data itzg/minecraft-server',
+    compose: `version: '2'
+services:
+  minecraft:
+    image: itzg/minecraft-server
+    container_name: minecraft
+    ports:
+      - "25565:25565"
+    volumes:
+      - /path/to/minecraft:/data
+`,
+    officialsite: 'https://hub.docker.com/r/itzg/minecraft-server'
+},
+{
+    name: 'Netdata',
+    description: 'Real-time performance monitoring.',
+    command: 'docker run -d --name=netdata -p 19999:19999 -v /path/to/netdata:/host --cap-add SYS_PTRACE --security-opt apparmor=unconfined netdata/netdata',
+    compose: `version: '2'
+services:
+  netdata:
+    image: netdata/netdata
+    container_name: netdata
+    ports:
+      - "19999:19999"
+    volumes:
+      - /path/to/netdata:/host
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor=unconfined
+`,
+    officialsite: 'https://www.netdata.cloud/'
+},
+{
+    name: 'Cockpit',
+    description: 'Server monitoring and management tool.',
+    command: 'docker run -d --name=cockpit -p 9091:9090 -v /path/to/cockpit:/data cockpit/cockpit',
+    compose: `version: '2'
+services:
+  cockpit:
+    image: cockpit/cockpit
+    container_name: cockpit
+    ports:
+      - "9091:9090"
+    volumes:
+      - /path/to/cockpit:/data
+`,
+    officialsite: 'https://cockpit-project.org/'
+},
+{
+    name: 'JupyterLab',
+    description: 'An extensible environment for interactive and reproducible computing.',
+    command: 'docker run -d --name=jupyterlab -p 8092:8888 -v /path/to/notebooks:/home/jovyan jupyter/base-notebook start-notebook.sh --LabApp.token= --LabApp.password=',
+    compose: `version: '2'
+services:
+  jupyterlab:
+    image: jupyter/base-notebook
+    container_name: jupyterlab
+    ports:
+      - "8092:8888"
+    volumes:
+      - /path/to/notebooks:/home/jovyan
+    command: start-notebook.sh --LabApp.token= --LabApp.password=
+`,
+    officialsite: 'https://jupyter.org/'
+},
+{
+    name: 'Graylog',
+    description: 'Open-source log management and analysis tool.',
+    command: 'docker run -d --name=graylog -p 9002:9000 -p 12201:12201 -p 1514:1514 -v /path/to/graylog:/usr/share/graylog/data graylog/graylog',
+    compose: `version: '2'
+services:
+  graylog:
+    image: graylog/graylog
+    container_name: graylog
+    ports:
+      - "9002:9000"
+      - "12201:12201"
+      - "1514:1514"
+    volumes:
+      - /path/to/graylog:/usr/share/graylog/data
+`,
+    officialsite: 'https://www.graylog.org/'
+},
+
     ];
 
     services.forEach(service => {
