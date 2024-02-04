@@ -140,36 +140,41 @@ requestrr:
 {
   name: 'Overseerr',
   description: 'Request management and media discovery tool for Plex, Sonarr, Radarr, and more.',
-  command: 'docker run -d --name=overseerr -p 5055:5055 -v /path/to/config:/config -v /path/to/downloads:/downloads hotio/overseerr',
+  command: 'docker run -d --name overseerr -e LOG_LEVEL=debug -e TZ=your-timezone -e PORT=5055 -p 5055:5055 -v /path/to/appdata/config:/app/config --restart unless-stopped sctx/overseerr',
   compose: `version: '3'
 services:
-overseerr:
-  image: hotio/overseerr
-  container_name: overseerr
-  ports:
-    - "5055:5055"
-  volumes:
-    - /path/to/config:/config
-    - /path/to/downloads:/downloads
+  overseerr:
+    image: sctx/overseerr:latest
+    container_name: overseerr
+    environment:
+      - LOG_LEVEL=debug
+      - TZ=your-timezone
+      - PORT=5055 #optional
+    ports:
+      - 5055:5055
+    volumes:
+      - /path/to/appdata/config:/app/config
+    restart: unless-stopped
 `,
   officialsite: 'https://overseerr.dev/'
 },
 {
   name: 'Jellyseerr',
   description: 'Jellyfin and Emby integration for Sonarr, Radarr, and Lidarr.',
-  command: 'docker run -d --name=jellyseerr -p 1910:1910 -e TZ=your-timezone -v /path/to/config:/config -v /path/to/downloads:/downloads fallenbagel/jellyseerr:latest',
+  command: 'docker run -d --name jellyseerr -e LOG_LEVEL=debug -e TZ=your-timezone -p 5055:5055 -v /path/to/appdata/config:/app/config --restart unless-stopped fallenbagel/jellyseerr:latest',
   compose: `version: '3'
 services:
-jellyseerr:
-  image: fallenbagel/jellyseerr:latest
-  container_name: jellyseerr
-  ports:
-    - "1910:1910"
-  environment:
-    - TZ=your-timezone
-  volumes:
-    - /path/to/config:/config
-    - /path/to/downloads:/downloads
+    jellyseerr:
+       image: fallenbagel/jellyseerr:latest
+       container_name: jellyseerr
+       environment:
+            - LOG_LEVEL=debug
+            - TZ=your-timezone
+       ports:
+            - 5055:5055
+       volumes:
+            - /path/to/appdata/config:/app/config
+       restart: unless-stopped
 `,
   officialsite: 'https://github.com/Fallenbagel/jellyseerr'
 },
