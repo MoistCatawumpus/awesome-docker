@@ -840,7 +840,7 @@ services:
     ports:
       - 8888:8080
 `,
-  officialsite: 'https://github.com/amir20/dozzle'
+  officialsite: 'https://dozzle.dev/'
 },
 
   ];
