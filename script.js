@@ -847,24 +847,30 @@ services:
 
   function renderServices(filteredServices) {
     instructionsDiv.innerHTML = '';
-
-    filteredServices.forEach(service => {
-      const serviceDiv = document.createElement('div');
-      serviceDiv.innerHTML = `
-          <h2>${service.name}</h2>
-          <p>${service.description}</p>
-          <p><strong>Command:</strong> <code>${service.command}</code></p>
-          <p><strong>Docker Compose:</strong></p>
-          <pre><code>${service.compose}</code></pre>
-          <p><strong><a href="${service.officialsite}" target="_blank">Official Site</a></strong></p>
-          <hr>
-      `;
-      serviceDiv.addEventListener('click', function () {
-        window.open(service.officialsite, '_blank');
+  
+    if (filteredServices.length === 0) {
+      const noResultsDiv = document.createElement('div');
+      noResultsDiv.innerHTML = '<p style="text-align: center; font-weight: bold;">No results found</p>';
+      instructionsDiv.appendChild(noResultsDiv);
+    } else {
+      filteredServices.forEach(service => {
+        const serviceDiv = document.createElement('div');
+        serviceDiv.innerHTML = `
+            <h2>${service.name}</h2>
+            <p>${service.description}</p>
+            <p><strong>Command:</strong> <code>${service.command}</code></p>
+            <p><strong>Docker Compose:</strong></p>
+            <pre><code>${service.compose}</code></pre>
+            <p><strong><a href="${service.officialsite}" target="_blank">Official Site</a></strong></p>
+            <hr>
+        `;
+        serviceDiv.addEventListener('click', function () {
+          window.open(service.officialsite, '_blank');
+        });
+        instructionsDiv.appendChild(serviceDiv);
       });
-      instructionsDiv.appendChild(serviceDiv);
-    });
-
+    }
+  
     const githubLogoLink = document.createElement('a');
     githubLogoLink.href = 'https://github.com/MoistCatawumpus';
     githubLogoLink.target = '_blank';
@@ -906,6 +912,6 @@ services:
     );
     renderServices(filteredServices);
   });
-
+  
   renderServices(services);
 });
