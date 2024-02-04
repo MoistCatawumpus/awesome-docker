@@ -3,6 +3,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const services = [
 {
+  name: 'FlareSolverr',
+  description: 'FlareSolverr is a proxy server to bypass Cloudflare protection.',
+  command: 'docker run -d --name=flaresolverr -p 8191:8191 -e LOG_LEVEL=info --restart unless-stopped ghcr.io/flaresolverr/flaresolverr:latest',
+  compose: `version: '3'
+services:
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    ports:
+      - "8191:8191"
+    environment:
+      - LOG_LEVEL=info
+    restart: unless-stopped
+`,
+  officialsite: 'https://github.com/FlareSolverr/FlareSolverr'
+},
+{
   name: 'Portainer',
   description: 'A lightweight container management UI.',
   command: 'docker run -d --name=portainer -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer',
