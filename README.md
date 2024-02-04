@@ -11,3 +11,7 @@ Welcome to Awesome Docker, your go-to resource for Docker services and configura
 # Something Didn't Work?
 
 Please open an Issue [here](https://github.com/MoistCatawumpus/awesome-docker/issues) and I will get on it as soon as possible!
+
+## Inspired By
+
+[veggiemonk/awesome-docker](https://github.com/veggiemonk/awesome-docker)
