@@ -33,7 +33,6 @@ hr {
     margin: 20px 0;
 }
 
-
 a {
     color: #61dafb;
     text-decoration: none;
@@ -41,4 +40,22 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+#search-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+label {
+    margin-right: 10px;
+}
+
+#searchInput {
+    padding: 10px;
+    border: 1px solid #485363;
+    border-radius: 4px;
+    margin-right: 5px;
+    width: 60%;
+    box-sizing: border-box;
 }
