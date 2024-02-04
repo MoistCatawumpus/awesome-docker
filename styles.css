@@ -1,40 +1,48 @@
+:root {
+    --primary-color: #61dafb;
+    --background-color: #282c35;
+    --container-background: #38424d;
+    --border-color: #485363;
+    --text-color: #ffffff;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #282c35;
-    color: #ffffff;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .container {
     max-width: 800px;
     margin: 50px auto;
     padding: 20px;
-    border: 1px solid #485363;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-    background-color: #38424d;
+    background-color: var(--container-background);
 }
 
 h1 {
     text-align: center;
-    color: #61dafb;
+    color: var(--primary-color);
 }
 
 code {
     background-color: #4d5766;
-    color: #ffffff;
+    color: var(--text-color);
     padding: 2px 4px;
     border-radius: 4px;
 }
 
 hr {
-    border: 1px solid #485363;
+    border: 1px solid var(--border-color);
     margin: 20px 0;
 }
 
 a {
-    color: #61dafb;
+    color: var(--primary-color);
     text-decoration: none;
 }
 
@@ -53,7 +61,7 @@ label {
 
 #searchInput {
     padding: 10px;
-    border: 1px solid #485363;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     margin-right: 5px;
     width: 60%;
