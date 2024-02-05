@@ -3,6 +3,38 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const services = [
 {
+  name: 'AdGuard Home',
+  description: 'Network-wide ads & trackers blocking DNS server.',
+  command: 'docker run --name adguardhome --restart unless-stopped -v /my/own/workdir:/opt/adguardhome/work -v /my/own/confdir:/opt/adguardhome/conf -p 53:53/tcp -p 53:53/udp -p 67:67/udp -p 68:68/udp -p 80:80/tcp -p 443:443/tcp -p 443:443/udp -p 3000:3000/tcp -p 853:853/tcp -p 784:784/udp -p 853:853/udp -p 8853:8853/udp -p 5443:5443/tcp -p 5443:5443/udp -d adguard/adguardhome',
+  compose: `version: "3"
+  services:
+    adguardhome:
+      container_name: adguardhome
+      image: adguard/adguardhome
+      restart: unless-stopped
+      volumes:
+        - /my/own/workdir:/opt/adguardhome/work
+        - /my/own/confdir:/opt/adguardhome/conf
+      ports:
+        - "53:53/tcp"
+        - "53:53/udp"
+        - "67:67/udp"
+        - "68:68/udp"
+        - "80:80/tcp"
+        - "443:443/tcp"
+        - "443:443/udp"
+        - "3000:3000/tcp"
+        - "853:853/tcp"
+        - "784:784/udp"
+        - "853:853/udp"
+        - "8853:8853/udp"
+        - "5443:5443/tcp"
+        - "5443:5443/udp"
+      detach: true  
+`,
+  officialsite: 'https://adguard.com/en/adguard-home/overview.html'
+},
+{
   name: 'FlareSolverr',
   description: 'FlareSolverr is a proxy server to bypass Cloudflare protection.',
   command: 'docker run -d --name=flaresolverr -p 8191:8191 -e LOG_LEVEL=info --restart unless-stopped ghcr.io/flaresolverr/flaresolverr:latest',
