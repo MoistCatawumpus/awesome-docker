@@ -3,6 +3,70 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const services = [
 {
+  name: 'TubeSync',
+  description: 'TubeSync is a PVR (personal video recorder) for YouTube.',
+  command: 'docker run -d --name=tubesync -e PUID=1000 -e PGID=1000 -e TZ=Europe/London -v /some/directory/tubesync-config:/config -v /some/directory/tubesync-downloads:/downloads -p 4848:4848 ghcr.io/meeb/tubesync:latest',
+  compose: `version: '3.7'
+services:
+  tubesync:
+    image: ghcr.io/meeb/tubesync:latest
+    container_name: tubesync
+    restart: unless-stopped
+    ports:
+      - 4848:4848
+    volumes:
+      - /some/directory/tubesync-config:/config
+      - /some/directory/tubesync-downloads:/downloads
+    environment:
+      - TZ=Europe/London
+      - PUID=1000
+      - PGID=1000
+`,
+  officialsite: 'https://github.com/meeb/tubesync'
+},
+{
+  name: 'Mylar3',
+  description: 'Mylar is an automated Comic Book (cbr/cbz) downloader program for use with NZB and torrents.',
+  command: 'docker run -d --name=mylar3 -e PUID=1000 -e PGID=1000 -e TZ=Etc/UTC -p 8090:8090 -v /path/to/mylar3/config:/config -v /path/to/comics:/comics -v /path/to/downloads:/downloads --restart unless-stopped lscr.io/linuxserver/mylar3:latest',
+  compose: `services:
+mylar3:
+  image: lscr.io/linuxserver/mylar3:latest
+  container_name: mylar3
+  environment:
+    - PUID=1000
+    - PGID=1000
+    - TZ=Etc/UTC
+  volumes:
+    - /path/to/mylar3/config:/config
+    - /path/to/comics:/comics
+    - /path/to/downloads:/downloads
+  ports:
+    - 8090:8090
+  restart: unless-stopped
+`,
+  officialsite: 'https://mylarcomics.com/'
+},
+{
+  name: 'changedetection.io',
+  description: 'Detect website content changes and perform meaningful actions.',
+  command: 'docker run -d --restart always -p "127.0.0.1:5000:5000" -v datastore-volume:/datastore --name changedetection.io dgtlmoon/changedetection.io',
+  compose: `version: '3'
+services:
+  changedetection.io:
+    image: dgtlmoon/changedetection.io
+    container_name: changedetection.io
+    restart: always
+    ports:
+      - "127.0.0.1:5000:5000"
+    volumes:
+      - datastore-volume:/datastore
+
+volumes:
+  datastore-volume:
+`,
+  officialsite: 'https://changedetection.io/'
+},
+{
   name: 'AdGuard Home',
   description: 'Network-wide ads & trackers blocking DNS server.',
   command: 'docker run --name adguardhome --restart unless-stopped -v /my/own/workdir:/opt/adguardhome/work -v /my/own/confdir:/opt/adguardhome/conf -p 53:53/tcp -p 53:53/udp -p 67:67/udp -p 68:68/udp -p 80:80/tcp -p 443:443/tcp -p 443:443/udp -p 3000:3000/tcp -p 853:853/tcp -p 784:784/udp -p 853:853/udp -p 8853:8853/udp -p 5443:5443/tcp -p 5443:5443/udp -d adguard/adguardhome',
