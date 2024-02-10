@@ -4,6 +4,7 @@
     --container-background: #38424d;
     --border-color: #485363;
     --text-color: #ffffff;
+    --button-hover-color: #3e8ef7;
 }
 
 body {
@@ -56,6 +57,11 @@ body {
 h1 {
     text-align: center;
     color: var(--primary-color);
+    transition: color 0.3s ease-in-out;
+}
+
+h1:hover {
+    color: var(--button-hover-color);
 }
 
 code {
@@ -68,6 +74,11 @@ code {
 hr {
     border: 1px solid var(--border-color);
     margin: 20px 0;
+    transition: border-color 0.3s ease-in-out;
+}
+
+hr:hover {
+    border-color: var(--primary-color);
 }
 
 a {
@@ -78,7 +89,7 @@ a {
 
 a:hover {
     text-decoration: underline;
-    color: #3e8ef7;
+    color: var(--button-hover-color);
 }
 
 #search-container {
@@ -97,11 +108,12 @@ label {
     margin-right: 5px;
     width: 60%;
     box-sizing: border-box;
-    transition: border-color 0.3s ease-in-out;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 #searchInput:focus {
     border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(97, 218, 251, 0.5);
     outline: none;
 }
 
@@ -112,12 +124,12 @@ label {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
     outline: none;
 }
 
 .button:hover {
-    background-color: #3e8ef7;
+    background-color: var(--button-hover-color);
     transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(97, 218, 251, 0.7);
 }
-
