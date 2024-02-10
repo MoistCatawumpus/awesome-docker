@@ -71,10 +71,12 @@ hr {
 a {
     color: var(--primary-color);
     text-decoration: none;
+    transition: color 0.3s ease-in-out;
 }
 
 a:hover {
     text-decoration: underline;
+    color: #3e8ef7;
 }
 
 #search-container {
@@ -93,4 +95,25 @@ label {
     margin-right: 5px;
     width: 60%;
     box-sizing: border-box;
+    transition: border-color 0.3s ease-in-out;
 }
+
+#searchInput:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.button {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button:hover {
+    background-color: #3e8ef7;
+}
+
