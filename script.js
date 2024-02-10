@@ -3,6 +3,112 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const services = [
 {
+  name: 'RabbitMQ',
+  description: 'RabbitMQ is an open-source message-broker software that originally implemented the Advanced Message Queuing Protocol (AMQP).',
+  command: 'docker run -d -p 5672:5672 -p 15672:15672 --name rabbitmq rabbitmq:latest',
+  compose: `version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:latest
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+`,
+  officialsite: 'https://www.rabbitmq.com/'
+},
+{
+  name: 'PostgreSQL',
+  description: 'PostgreSQL is a powerful, open-source object-relational database system.',
+  command: 'docker run -d -p 5432:5432 --name postgresql -e POSTGRES_PASSWORD=mysecretpassword postgres:latest',
+  compose: `version: '3'
+services:
+  postgresql:
+    image: postgres:latest
+    container_name: postgresql
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+`,
+  officialsite: 'https://www.postgresql.org/'
+},
+{
+  name: 'SonarQube',
+  description: 'SonarQube is an open-source platform for continuous inspection of code quality.',
+  command: 'docker run -d -p 9000:9000 --name sonarqube sonarqube:latest',
+  compose: `version: '3'
+services:
+  sonarqube:
+    image: sonarqube:latest
+    container_name: sonarqube
+    ports:
+      - "9000:9000"
+`,
+  officialsite: 'https://www.sonarqube.org/'
+},
+{
+  name: 'Elasticsearch',
+  description: 'Elasticsearch is a distributed, RESTful search and analytics engine capable of solving a growing number of use cases.',
+  command: 'docker run -d -p 9200:9200 -p 9300:9300 --name elasticsearch -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.17.0',
+  compose: `version: '3'
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
+    container_name: elasticsearch
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - "discovery.type=single-node"
+`,
+  officialsite: 'https://www.elastic.co/elasticsearch/'
+},
+{
+  name: 'MongoDB',
+  description: 'MongoDB is a general-purpose, document-based, distributed database built for modern application developers and for the cloud era.',
+  command: 'docker run -d -p 27017:27017 --name mongodb mongo:latest',
+  compose: `version: '3'
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+`,
+  officialsite: 'https://www.mongodb.com/'
+},
+{
+  name: 'MySQL',
+  description: 'MySQL is a widely used, open-source relational database management system (RDBMS).',
+  command: 'docker run -d -p 3306:3306 --name=mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw mysql:latest',
+  compose: `version: '3'
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+`,
+  officialsite: 'https://www.mysql.com/'
+},
+{
+  name: 'Redis',
+  description: 'Redis is an open-source, in-memory data structure store, used as a database, cache, and message broker.',
+  command: 'docker run -d -p 6379:6379 --name redis redis:latest',
+  compose: `version: '3'
+services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+`,
+  officialsite: 'https://redis.io/'
+},
+{
   name: 'TubeSync',
   description: 'TubeSync is a PVR (personal video recorder) for YouTube.',
   command: 'docker run -d --name=tubesync -e PUID=1000 -e PGID=1000 -e TZ=Europe/London -v /some/directory/tubesync-config:/config -v /some/directory/tubesync-downloads:/downloads -p 4848:4848 ghcr.io/meeb/tubesync:latest',
