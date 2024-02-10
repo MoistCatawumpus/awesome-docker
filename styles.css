@@ -25,6 +25,23 @@ body {
     animation: fadeIn 1s ease-in-out;
 }
 
+.announcement-box {
+    text-align: center;
+    background-color: rgba(97, 218, 251, 0.5);
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 20px;
+    overflow: auto;
+    max-height: 300px;
+}
+
+.announcement {
+    font-weight: bold;
+    color: white;
+    white-space: pre-wrap;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
